@@ -22,7 +22,7 @@ services:
     depends_on:
       - postgres
     environment:
-      DATABASE_URL: "sua url"
+      DATABASE_URL: "postgresql://postgres:pudim666@localhost:5432/clinica"
     ports:
       - "3000:3000"
     command: node dist/main.js
