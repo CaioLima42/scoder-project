@@ -1,23 +1,24 @@
 FROM node:20
 
-# Define a raiz do projeto
-WORKDIR /app
+WORKDIR /api
 
-# Copia os arquivos de dependência do Nest (dentro da pasta api/)
-COPY api/package*.json ./api/
+# Copia os arquivos de dependência
+COPY api/package*.json ./
 
-# Instala as dependências dentro da subpasta /app/api
-WORKDIR /app/api
+# Instala dependências
 RUN npm install
 
-# Copia todo o conteúdo da pasta api/
+# Copia tudo da pasta `api`
 COPY api/ .
 
-# Faz o build do projeto NestJS
+# Gera o Prisma Client
+RUN npx prisma generate
+
+# Compila o projeto NestJS
 RUN npm run build
 
-# Expõe a porta usada pelo NestJS
+# Expondo a porta
 EXPOSE 3000
 
-# Comando para iniciar a aplicação
+# Comando de inicialização
 CMD ["node", "dist/main.js"]
