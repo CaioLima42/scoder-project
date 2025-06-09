@@ -12,7 +12,7 @@ RUN npm install
 COPY api/ .
 
 # Gera o Prisma Client
-RUN npx prisma generate
+RUN npx prisma generate --schema=./prisma/schema.prisma
 
 # Compila o projeto NestJS
 RUN npm run build
