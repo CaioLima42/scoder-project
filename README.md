@@ -48,7 +48,8 @@ GET /doctor/list-patients?name=João
 Descrição: Lista pacientes com o nome especificado.
 
 Requer API Key
-
+```
+```
 DELETE /doctor/:id
 Descrição: Deleta um médico pelo ID.
 
@@ -78,7 +79,8 @@ GET /patient/get-consultations?name=Maria
 Descrição: Retorna todas as consultas do paciente especificado.
 
 Requer API Key
-
+```
+```
 DELETE /patient/:id
 Descrição: Deleta um paciente pelo ID.
 
