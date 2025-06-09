@@ -27,8 +27,8 @@ services:
       - "3000:3000"
     command: node dist/main.js
     volumes:
-      - ./api:/app/api
-      - /app/api/node_modules
+      - ./api:/api
+      - /api/node_modules
 
 volumes:
   postgres_data:
