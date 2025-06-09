@@ -22,6 +22,19 @@ Este projeto é uma API RESTful desenvolvida com [NestJS](https://nestjs.com/) e
 
 Algumas rotas estão protegidas com autenticação baseada em **API Key**, que deve ser enviada no header:
 
+
+### 🐳 Executando a Aplicação com Docker Compose
+Pré-requisitos
+Certifique-se de ter o Docker e o Docker Compose instalados em sua máquina.
+
+## Compile e suba os serviços (Postgres + Nest API):
+```
+docker-compose up --build
+```
+## A API estará disponível em:
+```
+http://localhost:3000
+```
 ## Rotas:
 
 🩺 Doctor:
