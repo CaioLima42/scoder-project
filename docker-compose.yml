@@ -5,24 +5,30 @@ services:
     image: postgres:15
     container_name: postgres
     restart: always
-    env_file: .env
+    environment:
+      POSTGRES_DB: clinica
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: pudim666
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
   api:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: nest-api
     depends_on:
       - postgres
-    env_file: .env
+    environment:
+      DATABASE_URL: "sua url"
     ports:
       - "3000:3000"
-    command: node dist/main.js  # ou npm run start:prod
+    command: node dist/main.js
     volumes:
-      - .:/app
-      - /app/node_modules
+      - ./api:/app/api
+      - /app/api/node_modules
 
 volumes:
   postgres_data:
