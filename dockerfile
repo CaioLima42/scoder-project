@@ -1,25 +1,23 @@
 FROM node:20
 
-# Define a pasta onde vai rodar dentro do container, que será /api
-WORKDIR /api
+# Define a raiz do projeto
+WORKDIR /app
 
-# Copia os arquivos package.json e package-lock.json para /api
-COPY api/package*.json ./
+# Copia os arquivos de dependência do Nest (dentro da pasta api/)
+COPY api/package*.json ./api/
 
-# Instala as dependências (sem dev)
-RUN npm install --omit=dev
+# Instala as dependências dentro da subpasta /app/api
+WORKDIR /app/api
+RUN npm install
 
-# Instala o Nest CLI globalmente
-RUN npm install -g @nestjs/cli
-
-# Copia todo o código fonte da pasta api para /api no container
+# Copia todo o conteúdo da pasta api/
 COPY api/ .
 
-# Roda o build para gerar a pasta dist
+# Faz o build do projeto NestJS
 RUN npm run build
 
-# Expõe a porta 3000 para o container
+# Expõe a porta usada pelo NestJS
 EXPOSE 3000
 
-# Comando para iniciar a aplicação (no diretório /api)
+# Comando para iniciar a aplicação
 CMD ["node", "dist/main.js"]
