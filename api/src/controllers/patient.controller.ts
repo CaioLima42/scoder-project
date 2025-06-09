@@ -7,6 +7,8 @@ import {
   Get,
   UseGuards,
   Query,
+  Delete,
+  Param
 } from '@nestjs/common';
 import { Response } from 'express';
 import { randomUUID } from 'crypto';
@@ -87,6 +89,26 @@ export class PatientController {
       return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
         statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
         message: 'Error retrieving consultations',
+        error: error.message,
+      });
+    }
+  }
+  @Delete(':id')
+  @UseGuards(ApiKeyGuard)
+  async deletePatient(@Param('id') id: string, @Res() res: Response): Promise<any> {
+    try {
+      await this.prisma.patient.delete({
+        where: { id },
+      });
+
+      return res.status(HttpStatus.OK).json({
+        statusCode: HttpStatus.OK,
+        message: 'Patient deleted successfully',
+      });
+    } catch (error) {
+      return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        message: 'Error deleting patient',
         error: error.message,
       });
     }
