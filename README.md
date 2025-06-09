@@ -68,6 +68,11 @@ Descrição: Deleta um médico pelo ID.
 
 Requer API Key
 ```
+```
+GET /doctor/list
+Descrição: Mostra todos os médicos.
+Requer API Key
+```
 👤 PatientController
 ```
 POST /patient/create
@@ -99,7 +104,12 @@ Descrição: Deleta um paciente pelo ID.
 
 Requer API Key
 ```
+```
+GET /patient/list
+Descrição: Mostra todos os pacientes.
 
+Requer API Key
+```
 📅 ConsultationController
 ```
 POST /consultation/create
