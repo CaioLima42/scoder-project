@@ -1,0 +1,32 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: clinica
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: pudim666
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  api:
+    build: .
+    container_name: nest-api
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgres://postgres:pudim666@postgres:5432/clinica
+    ports:
+      - "3000:3000"
+    command: npm run start:prod
+    volumes:
+      - .:/app
+      - /app/node_modules
+
+volumes:
+  postgres_data:
