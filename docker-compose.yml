@@ -22,13 +22,10 @@ services:
     depends_on:
       - postgres
     environment:
-      DATABASE_URL: "postgresql://postgres:pudim666@localhost:5432/clinica"
+      DATABASE_URL: "postgresql://postgres:pudim666@postgres:5432/clinica"
     ports:
       - "3000:3000"
     command: node dist/main.js
-    volumes:
-      - ./api:/api
-      - /api/node_modules
 
 volumes:
   postgres_data:
