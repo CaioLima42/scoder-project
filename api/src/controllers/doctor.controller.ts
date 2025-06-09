@@ -98,4 +98,32 @@ export class DoctorController {
       });
     }
   }
+  @UseGuards(ApiKeyGuard)
+  @Get('list')
+  async listDoctors(@Res() res: Response): Promise<any> {
+    try {
+      const doctors = await this.prisma.doctor.findMany({
+        select: {
+          id: true,
+          name: true,
+          age: true,
+          actingArea: true,
+          phoneNumber: true,
+          email: true,
+        },
+      });
+
+      return res.status(HttpStatus.OK).json({
+        statusCode: HttpStatus.OK,
+        message: 'Doctors retrieved successfully',
+        data: doctors,
+      });
+    } catch (error) {
+      return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        message: 'Error retrieving doctors',
+        error: error.message,
+      });
+    }
+  }
 }

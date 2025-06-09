@@ -113,4 +113,30 @@ export class PatientController {
       });
     }
   }
+  @UseGuards(ApiKeyGuard)
+  @Get('list')
+  async listPatients(@Res() res: Response): Promise<any> {
+    try {
+      const patients = await this.prisma.patient.findMany({
+        select: {
+          id: true,
+          name: true,
+          age: true,
+          phoneNumber: true,
+        },
+      });
+
+      return res.status(HttpStatus.OK).json({
+        statusCode: HttpStatus.OK,
+        message: 'Patients retrieved successfully',
+        data: patients,
+      });
+    } catch (error) {
+      return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        message: 'Error retrieving patients',
+        error: error.message,
+      });
+    }
+  }
 }
