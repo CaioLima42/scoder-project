@@ -2,23 +2,13 @@ FROM node:20
 
 WORKDIR /api
 
-# Copia os arquivos de dependência
+# Copia os arquivos de dependências
 COPY api/package*.json ./
 
 # Instala dependências
 RUN npm install
 
-# Copia tudo da pasta `api`
+# Copia o restante do código, incluindo src/prisma/schema.prisma
 COPY api/ .
 
-# Gera o Prisma Client
-RUN npx prisma generate --schema=./prisma/schema.prisma
-
-# Compila o projeto NestJS
-RUN npm run build
-
-# Expondo a porta
-EXPOSE 3000
-
-# Comando de inicialização
-CMD ["node", "dist/main.js"]
+# Gera o Prisma Client a par
