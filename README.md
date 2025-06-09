@@ -42,8 +42,8 @@ Editar
   "phoneNumber": "11999999999",
   "password": "senha123"
 }
-'''
-'''
+```
+```
 GET /doctor/list-patients?name=João
 Descrição: Lista pacientes com o nome especificado.
 
