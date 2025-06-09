@@ -122,3 +122,7 @@ Editar
   "durationMinutes": 45
 }
 ```
+```
+DELETE /consultation/:id
+Descrição: Deleta uma consulta pelo ID.
+```
