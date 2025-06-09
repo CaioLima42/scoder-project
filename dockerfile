@@ -1,13 +1,13 @@
 FROM node:20
 
-WORKDIR /app
+WORKDIR /api
 
 # Copia os arquivos de dependências
 COPY api/package*.json ./api/
 
 # Instala dependências
-WORKDIR /app/api
-RUN npm install --omit=dev
+WORKDIR /api
+RUN npm install
 
 # Instala o Nest CLI globalmente
 RUN npm install -g @nestjs/cli
