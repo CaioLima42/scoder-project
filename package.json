@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "@nestjs/cli": "^11.0.7",
+    "middleware": "^1.0.0"
+  },
+  "devDependencies": {
+    "prisma": "^6.9.0"
+  },
+  "scripts": {
+    "test:e2e": "jest --config jest-e2e.json"
+  }
+}
