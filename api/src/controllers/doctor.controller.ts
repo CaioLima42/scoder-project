@@ -7,6 +7,8 @@ import {
   HttpStatus,
   UseGuards,
   Query,
+  Delete,
+  Param
 } from '@nestjs/common';
 import { Response } from 'express';
 import { DoctorBody } from 'src/dtos/create-doctor-body';
@@ -73,6 +75,25 @@ export class DoctorController {
       return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
         statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
         message: 'Error retrieving patients',
+        error: error.message,
+      });
+    }
+  }
+  @Delete(':id')
+  async deleteDoctor(@Param('id') id: string, @Res() res: Response): Promise<any> {
+    try {
+      await this.prisma.doctor.delete({
+        where: { id },
+      });
+
+      return res.status(HttpStatus.OK).json({
+        statusCode: HttpStatus.OK,
+        message: 'Doctor deleted successfully',
+      });
+    } catch (error) {
+      return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        message: 'Error deleting doctor',
         error: error.message,
       });
     }
