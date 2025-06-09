@@ -72,6 +72,8 @@ Editar
   "phoneNumber": "11988888888",
   "password": "senha123"
 }
+```
+```
 GET /patient/get-consultations?name=Maria
 Descrição: Retorna todas as consultas do paciente especificado.
 
@@ -103,6 +105,8 @@ Editar
   "exams": "Exame de sangue",
   "prescription": "Tomar remédio X"
 }
+```
+```
 PATCH /consultation/reschedule/:id
 Descrição: Reagenda uma consulta existente.
 
